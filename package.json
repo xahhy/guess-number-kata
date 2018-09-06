@@ -1,0 +1,22 @@
+{
+  "name": "guess-number-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node run-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tws-practice/guess-number-kata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tws-practice/guess-number-kata/issues"
+  },
+  "homepage": "https://github.com/tws-practice/guess-number-kata#readme",
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
+}
