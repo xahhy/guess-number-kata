@@ -9,25 +9,23 @@ function genFourRandomNumber() {
 function parseInput(input) {
     return input.split('').map(num => parseInt(num));
 }
-
-function getANumber(realNums, guessNums) {
-    let _realNums = parseInput(realNums);
-    let _guessNums = parseInput(guessNums);
-    let ANumber = 0;
-    [..._realNums.keys()].forEach(index => {
-        _realNums[index] === _guessNums[index] ? ANumber++ : null;
-    });
-    return ANumber;
-}
-
-function getBNumber(realNums, guessNums) {
+function getABNumber(realNums, guessNums) {
     let _realNums = parseInput(realNums);
     let _guessNums = parseInput(guessNums);
     let BNumber = 0;
+    let ANumber = 0;
     [..._guessNums.keys()].forEach(index => {
         _realNums.indexOf(_guessNums[index]) !== -1 && _realNums[index] !== _guessNums[index] ? BNumber++ : null;
+        _realNums[index] === _guessNums[index] ? ANumber++ : null;
     });
-    return BNumber;
+    return {A:ANumber, B:BNumber};
+}
+function getANumber(realNums, guessNums) {
+    return getABNumber(realNums, guessNums).A;
+}
+
+function getBNumber(realNums, guessNums) {
+    return getABNumber(realNums, guessNums).B;
 }
 
 function validateInput(...inputs) {
@@ -44,8 +42,7 @@ function guessNumber(realNums, guessNums) {
     if (!validateInput(realNums, guessNums)) {
         return ERROR_MESSAGE;
     }
-    let ANumber = getANumber(realNums, guessNums);
-    let BNumber = getBNumber(realNums, guessNums);
+    let {A:ANumber, B:BNumber} = getABNumber(realNums, guessNums);
     return [ANumber, 'A', BNumber, 'B'].join('')
 }
 
